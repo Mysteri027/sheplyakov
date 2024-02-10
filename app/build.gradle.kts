@@ -1,6 +1,8 @@
 plugins {
   id("com.android.application")
   id("org.jetbrains.kotlin.android")
+  kotlin("kapt")
+  id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -46,8 +48,11 @@ android {
   }
 }
 
-dependencies {
+kapt {
+  correctErrorTypes = true
+}
 
+dependencies {
   implementation("androidx.core:core-ktx:1.12.0")
   implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
   implementation("androidx.activity:activity-compose:1.8.2")
@@ -63,4 +68,31 @@ dependencies {
   androidTestImplementation("androidx.compose.ui:ui-test-junit4")
   debugImplementation("androidx.compose.ui:ui-tooling")
   debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+
+
+  // Coroutines
+  val coroutineVersion = "1.7.3"
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion")
+  implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
+
+
+  // Coil
+  val coilVersion = "2.5.0"
+  implementation("io.coil-kt:coil-compose:$coilVersion")
+
+  // Hilt
+  val hiltVersion = "2.44"
+  implementation("com.google.dagger:hilt-android:$hiltVersion")
+  kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+
+  // Immutable collection
+  val immutableCollectionVersion = "0.3.7"
+  implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:$immutableCollectionVersion")
+
+  // Retrofit
+  val retrofitVersion = "2.9.0"
+  val gsonConverter = "2.9.0"
+  implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+  implementation("com.squareup.retrofit2:converter-gson:$gsonConverter")
 }
